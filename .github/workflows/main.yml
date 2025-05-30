@@ -24,7 +24,16 @@ jobs:
               gh repo edit --repo "$REPO" --visibility public --accept-visibility-change-consequences
               else
               echo "Repo is already public."
-              fi
+              fi   gh repo edit --repo "$REPO" --visibility public --accept-visibility-change-consequences || echo "Failed to make the repository public. Please check permissions."
+          `` if [ "$priv" = "true" ]; then
+            echo "Making repository public..."
+            gh repo edit --repo "$REPO" --visibility public --accept-visibility-change-consequences || {
+              echo "Error: Failed to make the repository public."
+              exit 1
+            }
+          else
+            echo "Repository is already public."
+          fi
 
   deploy-pages:
     needs: make-public
@@ -57,3 +66,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
