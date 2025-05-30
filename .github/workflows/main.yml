@@ -21,7 +21,7 @@ jobs:
           priv=$(gh repo view "$REPO" --json isPrivate --jq '.isPrivate')
           if [ "$priv" = "true" ]; then
             echo "Making repo public..."
-            gh repo edit "$REPO" --visibility public
+            gh repo edit "$REPO" --accept-visibility-change-consequences public
           else
             echo "Repo is already public."
           fi
