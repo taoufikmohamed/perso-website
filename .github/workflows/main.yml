@@ -1,0 +1,59 @@
+name: Make Repo Public and Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_branch:
+        description: 'Branch to deploy (e.g., main, master, gh-pages)'
+        required: true
+        default: 'master'
+
+jobs:
+  make-public:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make repository public
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Check if repo is already public
+          priv=$(gh repo view "$REPO" --json isPrivate --jq '.isPrivate')
+          if [ "$priv" = "true" ]; then
+            echo "Making repo public..."
+            gh repo edit "$REPO" --visibility public
+          else
+            echo "Repo is already public."
+          fi
+
+  deploy-pages:
+    needs: make-public
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js (for static site generators, optional)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Add your build step here if needed (e.g., npm install/build)
+      # - name: Build Site
+      #   run: npm install && npm run build
+
+      - name: Upload static site to GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./ # Change if your site output is in a different folder
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
