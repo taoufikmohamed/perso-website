@@ -53,6 +53,13 @@ jobs:
 
       - name: Build site
         run: npm run build
+
+      - name: Check if artifact exists
+        run: |
+         if [ ! -f "/home/runner/work/_temp/artifact.tar" ]; then
+         echo "artifact.tar does not exist!"
+         exit 1
+         fi
       - name: Upload Pages artifact (repo root)
         uses: actions/upload-pages-artifact@v3
         with:
