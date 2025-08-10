@@ -17,25 +17,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          /*# Check if repo is already public
-             priv=$(gh repo view "$REPO" --json isPrivate --jq '.isPrivate')
-             if [ "$priv" = "true" ]; then
-              echo "Making repo public..."
-              gh repo edit --repo "$REPO" --visibility public --accept-visibility-change-consequences
-              else
-              echo "Repo is already public."
-              fi   gh repo edit --repo "$REPO" --visibility public --accept-visibility-change-consequences || echo "Failed to make the repository public. Please check permissions."
-          `` if [ "$priv" = "true" ]; then
-            echo "Making repository public..."
-            gh repo edit --repo "$REPO" --visibility public --accept-visibility-change-consequences || {
-              echo "Error: Failed to make the repository public."
-              exit 1
-            }
-          else
-            echo "Repository is already public."
-          fi 
-           */
-             //
+
           if [ "$priv" = "true" ]; then
              echo "Making repository public..."
               gh repo edit --repo "$REPO" --visibility public --accept-visibility-change-consequences || {
