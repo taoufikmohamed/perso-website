@@ -54,35 +54,15 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Archive site artifact
-        run: |
-          tar -cvf /home/runner/work/_temp/artifact.tar -C dist .
-
-      - name: Check if artifact exists
-        run: |
-          if [ ! -f "/home/runner/work/_temp/artifact.tar" ]; then
-          echo "artifact.tar does not exist!"
-          exit 1
-          fi
-      - name: Upload Pages artifact (repo root)
+      # Upload the static site content for Pages. Change "path" if your site lives elsewhere (e.g., ./public or ./dist)
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: /home/runner/work/_temp/artifact.tar
-          # Exclusions can be handled by a .gitignore-style file if needed
-      - name: Download site artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: site
-          path: /home/runner/work/_temp/artifact.tar
-          
+          path: .
+          # If your site is in a different folder, set it here, e.g.:
+          # path: ./public
+          # path: ./dist
 
-      - name: Show files to deploy
-        run: ls -la dist
-
-      # Upload the build output to GitHub Pages
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          # If your build output is in a folder other than ./public, set it here
-          # For example, if output is in 'dist', use 'dist'
-          folder: public
