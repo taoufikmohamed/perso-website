@@ -56,13 +56,14 @@ jobs:
       - name: Upload Pages artifact (repo root)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: /home/runner/work/_temp/artifact.tar
           # Exclusions can be handled by a .gitignore-style file if needed
       - name: Download site artifact
         uses: actions/download-artifact@v4
         with:
           name: site
-          path: dist
+          path: /home/runner/work/_temp/artifact.tar
+          
 
       - name: Show files to deploy
         run: ls -la dist
