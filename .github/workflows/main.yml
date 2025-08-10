@@ -55,6 +55,10 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./ # Change if your site output is in a different folder
+      - name: Enable Pages Deployment
+        uses: actions/configure-pages@v2
+        with:
+            enablement: true
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
