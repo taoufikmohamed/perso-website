@@ -1,4 +1,4 @@
-name: Make Repo Public and Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -55,9 +55,14 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./ # Change if your site output is in a different folder
-
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_dir: ./public
+
+         // - name: Deploy to GitHub Pages
+         // id: deployment
+         // uses: actions/deploy-pages@v4
 
 
