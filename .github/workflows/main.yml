@@ -58,10 +58,14 @@ jobs:
           enablement: true
       
       # Ensure upload-pages-artifact points to the correct build output
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public # Change if needed
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build site
+        run: npm run build
+      
+      - name: Archive artifact
+        run: tar -czf public.tar.gz ./public
       
       # Deploy using deploy-pages action (if preferred)
       - name: Deploy to GitHub Pages
