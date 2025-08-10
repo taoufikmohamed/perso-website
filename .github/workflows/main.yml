@@ -39,36 +39,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js (for static site generators, optional)
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # Add your build step here if needed (e.g., npm install/build)
-      # - name: Build Site
-      #   run: npm install && npm run build
-
-      - name: Upload static site to GitHub Pages
-        uses: actions/configure-pages@v5
-
-# Only one configure-pages step needed, and enablement should be true
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      
-      # Ensure upload-pages-artifact points to the correct build output
       - name: Install dependencies
         run: npm install
-      
+
       - name: Build site
         run: npm run build
-      
-      - name: Archive artifact
-        run: tar -czf public.tar.gz ./public
-      
-      # Deploy using deploy-pages action (if preferred)
+
+      # Upload the build output to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-
-
+        with:
+          # If your build output is in a folder other than ./public, set it here
+          # For example, if output is in 'dist', use 'dist'
+          folder: public
