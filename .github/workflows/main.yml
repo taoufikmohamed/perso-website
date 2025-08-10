@@ -51,22 +51,20 @@ jobs:
       - name: Upload static site to GitHub Pages
         uses: actions/configure-pages@v5
 
+# Only one configure-pages step needed, and enablement should be true
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      
+      # Ensure upload-pages-artifact points to the correct build output
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./ # Change if your site output is in a different folder
-      - name: Enable Pages Deployment
-        uses: actions/configure-pages@v2
-        with:
-            enablement: true
+          path: ./public # Change if needed
+      
+      # Deploy using deploy-pages action (if preferred)
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-         github_token: ${{ secrets.GITHUB_TOKEN }}
-         publish_dir: ./public
-
-         // - name: Deploy to GitHub Pages
-         // id: deployment
-         // uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4
 
 
