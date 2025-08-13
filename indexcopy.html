@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure DevOps & GitHub Consultant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .btn-azure { background:#0078D4; }
+    .btn-azure:hover { background:#106EBE; }
+    /* Force consistent text color inside service cards (fix for 01,02,03 turning white) */
+    .service-card { color:#374151; }              /* tailwind gray-700 */
+    .service-card h3 { color:#1f2937; }           /* gray-800 */
+    .service-card ul li span { color:#4b5563; }   /* gray-600 */
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- ===== Hero Section ===== -->
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-900 to-gray-900 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__fadeInDown">
+        Optimize Your DevOps with <span class="text-blue-400">GitHub & Azure</span>
+      </h1>
+      <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto animate__animated animate__fadeInUp">
+        Expert CI/CD pipelines, infrastructure automation, and cloud security tailored to your team.
+      </p>
+      <div class="animate__animated animate__fadeIn">
+        <a href="#contact" 
+          class="btn-azure px-8 py-3 rounded-lg font-semibold mr-4 text-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <i class="fas fa-calendar-check mr-2"></i> Free Consultation
+        </a>
+        <a href="#services" 
+          class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
+          <i class="fas fa-laptop-code mr-2"></i> My Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services Section ===== -->
+<section id="services" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="section-heading text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800 inline-block">
+      <i class="fas fa-cogs text-blue-500 mr-3"></i> My Expertise
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- 1. CI/CD Pipelines -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-rocket text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">01</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">CI/CD Pipelines</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>GitHub Actions / Azure Pipelines</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>YAML pipeline configuration</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Containerized deployments</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 2. Infrastructure as Code -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-project-diagram text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">02</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Infrastructure as Code</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Terraform / Bicep / ARM templates</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Azure resource provisioning</span>
+          </li>
+            <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Policy-as-Code implementation</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 3. GitHub Repositories -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fab fa-github text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">03</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">GitHub Repositories</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Repository management CLI</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Pull Request workflows</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Security scanning</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 4. GitHub Migration -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-code-branch text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">04</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Repositories & Pipelines Migration</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Bamboo Pipelines Migration</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>SVN Migration</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Bitbucket Migration</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 5. GitHub Security -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-shield-alt text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">05</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">GitHub Security</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Advanced Secret Scanning</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Dependabot vulnerability alerts</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>CodeQL integration</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 6. Azure DevOps Migrations -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-exchange-alt text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">06</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Azure DevOps Migrations</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Legacy system modernization</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Repository/Work Item migration</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Pipeline conversion tools</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 7. Docker Solutions -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fab fa-docker text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">07</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Docker Solutions</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Containerization of legacy apps</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Dockerfile optimization</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Azure Container Registry setup</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 8. Kubernetes -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-ship text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">08</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Kubernetes</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>AKS (Azure Kubernetes) deployments</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Helm chart development</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Auto-scaling configurations</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 9. Azure Resources Transfer -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-cloud-upload-alt text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">09</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Azure Resources Transfer</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Cross-tenant migrations</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Subscription-to-subscription transfers</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>ARM template resource relocation</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 10. Team Training -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-users text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">10</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Team Training</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>GitHub Actions workshops</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Azure DevOps best practices</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>YAML pipeline deep dives</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 11. Performance Optimization -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-tachometer-alt text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">11</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Performance Optimization</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Pipeline speed analysis</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Cost-effective cloud scaling</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Caching strategies</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 12. Application Support and Maintenance -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-tools text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">12</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Application Support & Maintenance</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>24/7 application monitoring</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Service reliability engineering</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Automated incident response</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 13. OS Troubleshooting -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-terminal text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">13</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">OS Troubleshooting</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Windows Server diagnostics</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Linux RHEL performance tuning</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>System hardening & security</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 14. Machine Learning Infrastructure -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-brain text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">14</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Machine Learning Infrastructure</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>ML model deployment pipelines</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Azure ML workspace setup</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>MLOps implementation</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 15. Programming Languages -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-code text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">15</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Programming Expertise</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Python & PowerShell scripting</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>JavaScript/TypeScript development</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>C#/.NET Core applications</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Add this service card after the Programming Expertise card -->
+
+      <!-- 16. Zabbix Monitoring -->
+      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
+        <div class="text-blue-600 mb-4 flex items-center">
+          <i class="fas fa-chart-line text-4xl mr-4"></i>
+          <span class="text-2xl font-bold">16</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Zabbix Monitoring</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>End-to-end monitoring setup</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Custom alert configurations</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>Performance dashboards & reporting</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>  
+
+  <!-- ===== Testimonials ===== -->
+  <section class="py-20 bg-gray-100">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
+        <i class="fas fa-quote-left text-blue-500 mr-3"></i> Client Success Stories
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-bold">John D.</h4>
+              <p class="text-blue-600">CTO, TechCorp</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "Migrated our entire pipeline to Azure DevOps in 2 weeks. Flawless execution!"
+          </p>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-bold">Sarah K.</h4>
+              <p class="text-blue-600">DevOps Lead, FinTech</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "Implemented GitHub Advanced Security—reduced vulnerabilities by 90%."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Form ===== -->
+  <section id="contact" class="py-20 bg-gray-900 text-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">
+        <i class="fas fa-paper-plane text-blue-400 mr-3"></i> Let's Work Together
+      </h2>
+      <p class="text-center mb-12 max-w-2xl mx-auto text-gray-300">
+        Need a DevOps expert? Reach out for a free 30-minute consultation.
+      </p>
+      <form id="contactForm" class="max-w-2xl mx-auto" onsubmit="return handleSubmit(event)">
+        <!-- Use only if your template To is {{to_email}} -->
+        <input type="hidden" name="to_email" value="taoufik.m.mohamed@gmail.com" />
+        <input type="hidden" name="to_name" value="Mohamed Taoufik" />
+        <input type="hidden" name="subject" value="New message from website" />
+        <!-- Mirror field (some templates use from_email instead of reply_to) -->
+        <input type="email" name="from_email" id="from_email" class="hidden" tabindex="-1" aria-hidden="true" />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <input type="text" name="from_name" id="name" placeholder="Your Name" required
+                 class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <input type="email" name="reply_to" id="email" placeholder="Your Email" required
+                 class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <textarea name="message" id="message" placeholder="How can I help?" rows="4" required
+                  class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-6"></textarea>
+
+        <div id="formAlert" class="mb-4 hidden"></div>
+        <button type="submit" id="submitButton"
+                class="w-full bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold transition-all duration-300">
+          <i class="fas fa-paper-plane mr-2"></i> Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- EmailJS SDK (keep this before </body>) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  const EMAILJS_PUBLIC_KEY = '34e_iQcOpal7XZQLU';
+  const EMAILJS_SERVICE_ID = 'service_k7m5ipe';
+  const EMAILJS_TEMPLATE_ID = 'template_45ws3e2';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    const form = document.getElementById('contactForm');
+    if (form) form.addEventListener('submit', handleSubmit);
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitButton = document.getElementById('submitButton');
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !message) { return showAlert('Please fill in all fields', 'error'), false; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { return showAlert('Please enter a valid email address', 'error'), false; }
+
+    // Mirror reply_to into from_email for templates that use from_email
+    const fromEmailEl = document.getElementById('from_email');
+    if (fromEmailEl) fromEmailEl.value = email;
+
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+      .then(() => { showAlert('Message sent successfully!', 'success'); form.reset(); })
+      .catch(err => { console.error(err); showAlert(err?.text || 'Failed to send message. Check template To, Reply-To, From name.', 'error'); })
+      .finally(() => {
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Send Message';
+      });
+
+    return false;
+  }
+
+  function showAlert(message, type) {
+    const el = document.getElementById('formAlert');
+    el.textContent = message;
+    el.className = `mb-4 p-4 rounded-lg ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white`;
+    el.classList.remove('hidden');
+  }
+</script>
+
+  <!-- ===== Footer ===== -->
+  <footer class="py-10 bg-gray-800 text-gray-400">
+    <div class="container mx-auto px-6 text-center">
+      <div class="flex justify-center space-x-6 mb-6">
+        <!--a href="#" class="hover:text-white"><i class="fab fa-github text-2xl"></i></a>
+        <a href="#" class="hover:text-white"><i class="fab fa-linkedin text-2xl"></i></a>
+        <a href="#" class="hover:text-white"><i class="fab fa-twitter text-2xl"></i></a>
+        <div class="flex justify-center space-x-6 mb-6"-->
+
+          <!-- LinkedIn Link -->
+          <a href="https://www.linkedin.com/in/mohamed-t-b4153639/" 
+             title="Visit My linkedin"
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="hover:text-white transition-colors duration-300">
+            <i class="fab fa-linkedin text-2xl"></i>
+          </a>
+
+
+
+          <!-- GitHub Link -->
+          <a href="https://github.com/taoufikmohamed" 
+             title="Visit My GitHub"
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="hover:text-white transition-colors duration-300">
+            <i class="fab fa-github text-2xl"></i>
+          </a>
+          
+          <!-- Twitter Link -->
+          <a href="https://x.com/_MohamedTaoufik" 
+             title="Visit My Twitter"
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="hover:text-white transition-colors duration-300">
+             <i class="fab fa-twitter text-2xl"></i>
+          </a>
+        </div>
+      </div>
+      <p>&copy; 2025 Your DevOps Consultancy. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

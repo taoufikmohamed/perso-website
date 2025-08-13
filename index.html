@@ -1,34 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Azure DevOps & GitHub Consultant</title>
-  <!-- Tailwind CSS -->
+  <meta name="description" content="Senior DevOps & Platform Engineering: GitHub, Azure DevOps, CI/CD, IaC, Containers, Security & Observability.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind = window.tailwind || {};
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          animation:{
+            'gradient-x':'gradient-x 12s ease infinite',
+            'float':'float 6s ease-in-out infinite',
+            'pulse-slow':'pulse 4s ease-in-out infinite'
+          },
+          keyframes:{
+            'gradient-x':{
+              '0%,100%':{backgroundPosition:'0% 50%'},
+              '50%':{backgroundPosition:'100% 50%'}
+            },
+            'float':{
+              '0%,100%':{transform:'translateY(0)'},
+              '50%':{transform:'translateY(-18px)'}
+            }
+          },
+          boxShadow:{
+            'glow':'0 0 0 3px rgba(59,130,246,.35)',
+            'inner-card':'inset 0 1px 0 rgba(255,255,255,.04)'
+          }
+        }
+      }
+    };
+    (function(){
+      const s=localStorage.theme, m=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if(s==='dark'||(!s&&m)) document.documentElement.classList.add('dark');
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <head>
-    <!-- Existing meta tags and title -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Add this line -->
-    <link rel="stylesheet" href="/styles/main.css">
-    <!-- Other stylesheets (animate.css, font awesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  </head>
-  <!-- Animate.css for animations -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* Custom styles (optional) */
-    body {
-      font-family: 'Inter', sans-serif;
+    *{transition:background-color .35s ease,color .35s ease,border-color .35s ease;}
+    body{font-family:'Inter',system-ui,sans-serif;}
+    .btn-primary{background:#0078d4;}
+    .btn-primary:hover{background:#0d6fc4;}
+    .hero-anim:before,
+    .hero-anim:after{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:
+        radial-gradient(circle at 15% 25%,rgba(59,130,246,.28),transparent 60%),
+        radial-gradient(circle at 85% 70%,rgba(14,165,233,.22),transparent 65%);
+      mix-blend-mode:overlay;
     }
-    .btn-azure {
-      background-color: #0078D4;
+    .gradient-text{
+      background:linear-gradient(90deg,#60a5fa 0%,#38bdf8 40%,#818cf8 80%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:shine 8s linear infinite;
+      background-size:200% 100%;
     }
-    .btn-azure:hover {
-      background-color: #106EBE;
+    @keyframes shine{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .gradient-text, .animate-gradient, .animate-float, .reveal{animation:none!important;transition:none!important}
+    }
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.4,.16,.2,1),transform .9s cubic-bezier(.4,.16,.2,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .service-card{position:relative;overflow:hidden;}
+    .service-card:before{
+      content:"";position:absolute;inset:0;opacity:0;transition:.6s;
+      background:radial-gradient(circle at 120% 15%,rgba(59,130,246,.18),transparent 70%);
+    }
+    .service-card:hover:before{opacity:1;}
+    .number-badge{
+      width:3rem;height:3rem;display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:.95rem;border-radius:9999px;
+      background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;
+      box-shadow:0 4px 14px -4px rgba(79,70,229,.55);transition:transform .45s;
+      flex-shrink:0;
+    }
+    .service-card:hover .number-badge{transform:scale(1.12) rotate(3deg);}
+    .stack-card:hover i{transform:scale(1.1);}
+    .stack-card i{transition:transform .4s;}
+    .focus-ring:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,255,255,.6),0 0 0 6px rgba(59,130,246,.7);}
+
+    /* Text hover underline slide */
+    .hover-underline-anim{
+      position:relative;
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .hover-underline-anim:after{
+      content:"";
+      position:absolute;
+      left:0;bottom:-4px;
+      width:0;height:2px;
+      background:linear-gradient(90deg,#3b82f6,#06b6d4,#8b5cf6);
+      transition:width .45s cubic-bezier(.4,.16,.2,1);
+      border-radius:2px;
+    }
+    .hover-underline-anim:hover:after{ width:100%; }
+
+    /* Shimmer gradient on hover */
+    .shimmer-hover{
+      background:linear-gradient(110deg,#e2e8f0 0%,#ffffff 25%,#e2e8f0 50%);
+      background-size:200% 100%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      transition:background-position .9s ease;
+    }
+    .shimmer-hover:hover{
+      background-position:100% 0;
+    }
+
+    /* Subtle glow + scale */
+    .glow-word{
+      display:inline-block;
+      transition:color .35s, text-shadow .35s, transform .45s;
+    }
+    .glow-word:hover{
+      color:#fff;
+      text-shadow:0 0 12px rgba(96,165,250,.55),0 0 24px rgba(14,165,233,.35);
+      transform:translateY(-2px) scale(1.04);
+    }
+
+    /* Service heading accent */
+    .service-card h3{
+      position:relative;
+      transition:color .4s;
+    }
+    .service-card h3:after{
+      content:"";
+      position:absolute;
+      left:0;bottom:-6px;
+      width:0;height:3px;
+      background:linear-gradient(90deg,#2563eb,#06b6d4,#6366f1);
+      border-radius:2px;
+      transition:width .5s cubic-bezier(.4,.16,.2,1);
+    }
+    .service-card:hover h3:after{ width:60%; }
+
+    /* List item hover elevate */
+    .service-card ul li{
+      position:relative;
+      padding:.35rem .4rem .35rem .4rem;
+      border-radius:.5rem;
+      transition:background .35s, transform .35s;
+    }
+    .service-card ul li:hover{
+      background:linear-gradient(90deg,rgba(37,99,235,.08),rgba(6,182,212,.08));
+      transform:translateX(4px);
+    }
+
+    /* Tool / stack card name shimmer on hover */
+    .stack-card span.font-semibold{
+      position:relative;
+      background:linear-gradient(90deg,#111827,#374151);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      transition:background-position 1.2s ease;
+      background-size:200% 100%;
+    }
+    .stack-card:hover span.font-semibold{
+      background-position:100% 0;
+    }
+
+    /* Gradient stroke hover for rotating keyword */
+    #heroRotator{
+      position:relative;
+      transition:color .4s, text-shadow .4s;
+    }
+    #heroRotator:hover{
+      color:#60a5fa;
+      text-shadow:0 0 10px rgba(96,165,250,.55);
+    }
+
+    /* Animated divider bar under whole headline on hover */
+    .hero-headline-wrap{
+      position:relative;
+      padding-bottom:12px;
+    }
+    .hero-headline-wrap:after{
+      content:"";
+      position:absolute;
+      left:50%;bottom:0;
+      width:0;height:4px;
+      background:linear-gradient(90deg,#3b82f6,#06b6d4,#8b5cf6);
+      border-radius:4px;
+      transform:translateX(-50%);
+      transition:width .7s cubic-bezier(.4,.16,.2,1);
+    }
+    .hero-headline-wrap:hover:after{ width:82%; }
+
+    /* Tag badges hover pulse border */
+    .tech-badge{
+      position:relative;
+      overflow:hidden;
+    }
+    .tech-badge:before{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(120deg,rgba(255,255,255,.12),rgba(255,255,255,0),rgba(255,255,255,.12));
+      opacity:0;
+      transform:translateX(-30%);
+      transition:opacity .6s, transform .9s;
+    }
+    .tech-badge:hover:before{
+      opacity:1;
+      transform:translateX(0);
+    }
+    .tech-badge:hover{
+      box-shadow:0 0 0 1px rgba(255,255,255,.25),0 4px 14px -4px rgba(59,130,246,.4);
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .service-card h3:after,
+      .hero-headline-wrap:after,
+      .stack-card span.font-semibold,
+      .hover-underline-anim:after,
+      .tech-badge:before{transition:none!important}
     }
   </style>
 </head>
@@ -36,18 +235,6 @@
   <!-- ===== Hero Section ===== -->
   <section class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-900 to-gray-900 text-white">
     <div class="container mx-auto px-6 text-center">
-
-      <!-- Profile Photo -->
-      <div class="w-32 h-32 mx-auto mb-6 rounded-full ring-4 ring-blue-400/30 shadow-xl overflow-hidden animate__animated animate__zoomIn">
-        <!-- Replace src with your real photo path (recommended: assets/profile.jpg). 
-             The onerror fallback uses your GitHub avatar. -->
-        <img 
-          src="assets/profile.jpg" 
-          alt="Profile photo of Mohamed Taoufik" 
-          class="w-full h-full object-cover"
-          onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/u/16936354?v=4';" />
-      </div>
-
       <h1 class="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__fadeInDown">
         Optimize Your DevOps with <span class="text-blue-400">GitHub & Azure</span>
       </h1>
@@ -59,591 +246,359 @@
           class="btn-azure px-8 py-3 rounded-lg font-semibold mr-4 text-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
           <i class="fas fa-calendar-check mr-2"></i> Free Consultation
         </a>
-        <a href="#services" 
-          class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
-          <i class="fas fa-laptop-code mr-2"></i> My Services
+        <a href="https://docs.docker.com/" target="_blank" rel="noopener" class="reveal stack-card group flex flex-col items-center gap-3 rounded-xl bg-white/70 dark:bg-gray-800/60 backdrop-blur shadow-md p-5 border border-gray-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-xl transition focus-ring">
+          <i class="fab fa-docker text-3xl text-sky-600"></i><span class="font-semibold text-sm">Docker</span><span class="text-xs text-blue-600 group-hover:text-blue-700 font-medium">Docs ↗</span>
         </a>
+        <a href="https://kubernetes.io/docs/home/" target="_blank" rel="noopener" class="reveal stack-card group flex flex-col items-center gap-3 rounded-xl bg-white/70 dark:bg-gray-800/60 backdrop-blur shadow-md p-5 border border-gray-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-xl transition focus-ring">
+          <i class="fas fa-ship text-3xl text-indigo-600"></i><span class="font-semibold text-sm">Kubernetes (AKS)</span><span class="text-xs text-blue-600 group-hover:text-blue-700 font-medium">Docs ↗</span>
+        </a>
+        <a href="https://www.zabbix.com/documentation/current/en/manual" target="_blank" rel="noopener" class="reveal stack-card group flex flex-col items-center gap-3 rounded-xl bg-white/70 dark:bg-gray-800/60 backdrop-blur shadow-md p-5 border border-gray-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-xl transition focus-ring">
+          <i class="fas fa-chart-line text-3xl text-green-600"></i><span class="font-semibold text-sm">Zabbix</span><span class="text-xs text-blue-600 group-hover:text-blue-700 font-medium">Docs ↗</span>
+        </a>
+        <a href="https://docs.python.org/3/" target="_blank" rel="noopener" class="reveal stack-card group flex flex-col items-center gap-3 rounded-xl bg-white/70 dark:bg-gray-800/60 backdrop-blur shadow-md p-5 border border-gray-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-xl transition focus-ring">
+          <i class="fab fa-python text-3xl text-yellow-500"></i><span class="font-semibold text-sm">Python</span><span class="text-xs text-blue-600 group-hover:text-blue-700 font-medium">Docs ↗</span>
+        </a>
+        <a href="https://learn.microsoft.com/powershell/" target="_blank" rel="noopener" class="reveal stack-card group flex flex-col items-center gap-3 rounded-xl bg-white/70 dark:bg-gray-800/60 backdrop-blur shadow-md p-5 border border-gray-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-xl transition focus-ring">
+          <i class="fas fa-terminal text-3xl text-gray-700 dark:text-gray-200"></i><span class="font-semibold text-sm">PowerShell</span><span class="text-xs text-blue-600 group-hover:text-blue-700 font-medium">Docs ↗</span>
+        </a>
+        <a href="https://codeql.github.com/docs/"
+           target="_blank"
+           rel="noopener"
+           aria-label="CodeQL Documentation"
+           class="reveal stack-card group flex flex-col items-center gap-3 rounded-xl bg-white/70 dark:bg-gray-800/60 backdrop-blur shadow-md shadow-gray-200/40 dark:shadow-black/40 p-5 border border-gray-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-xl transition focus-ring">
+          <i class="fas fa-shield-alt text-3xl text-emerald-600"></i>
+          <span class="font-semibold text-sm">CodeQL / Sec</span>
+          <span class="text-xs text-blue-600 group-hover:text-blue-700 font-medium">Docs ↗</span>
+        </a>
+      </div>
+      <p class="mt-10 text-center text-xs text-gray-500 dark:text-gray-500">Logos & names are trademarks of their respective owners.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(59,130,246,.12),transparent_60%)]"></div>
+    <div class="container mx-auto px-6 relative">
+      <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800 dark:text-gray-100">
+        <i class="fas fa-cogs text-blue-500 mr-3"></i> My Expertise
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Reusable card pattern (01 shown; replicate existing 02..16 kept from your file) -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4">
+            <span class="number-badge">01</span>
+            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">CI/CD Pipelines</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>GitHub Actions / Azure Pipelines</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Reusable YAML architecture</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Artifacts & container delivery</span></li>
+          </ul>
+        </div>
+
+        <!-- Keep your existing 02..16 blocks (unchanged semantics) -->
+        <!-- 02 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">02</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Infrastructure as Code</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Terraform / Bicep / ARM</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Consistent provisioning</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Policy as Code</span></li>
+          </ul>
+        </div>
+
+        <!-- 03 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">03</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">GitHub Repositories</h3></div>
+            <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+              <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Repo & branch strategy</span></li>
+              <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>PR automation / bots</span></li>
+              <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Security scanning</span></li>
+            </ul>
+        </div>
+
+        <!-- Continue with your 04 .. 16 original content (unchanged for brevity) -->
+        <!-- 04 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">04</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Repositories & Pipelines Migration</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Bamboo Pipelines</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>SVN to Git</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Bitbucket to GitHub</span></li>
+          </ul>
+        </div>
+
+        <!-- (Keep 05..16 from your current file or replicate new style similarly) -->
+        <!-- 05 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">05</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">GitHub Security</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Secret Scanning / Dependabot</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>CodeQL integration</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Policy enforcement</span></li>
+          </ul>
+        </div>
+
+        <!-- 06 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">06</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Azure DevOps Migrations</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Legacy modernization</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Work Item migration</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Pipeline conversion</span></li>
+          </ul>
+        </div>
+
+        <!-- 07 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">07</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Docker Solutions</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Containerization</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Image optimization</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>ACR workflows</span></li>
+          </ul>
+        </div>
+
+        <!-- 08 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">08</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Kubernetes</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>AKS deployments</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Helm packaging</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Auto-scaling</span></li>
+          </ul>
+        </div>
+
+        <!-- 09 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">09</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Azure Resource Transfer</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Cross-tenant moves</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Subscription transfers</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>ARM relocation</span></li>
+          </ul>
+        </div>
+
+        <!-- 10 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">10</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Team Training</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>GitHub workshops</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Azure DevOps best practice</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Pipeline deep dives</span></li>
+          </ul>
+        </div>
+
+        <!-- 11 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">11</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Performance Optimization</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Pipeline speed</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Cost efficiency</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Caching strategy</span></li>
+          </ul>
+        </div>
+
+        <!-- 12 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">12</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">App Support & Maintenance</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>24/7 monitoring</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>SRE / reliability</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Automated incident</span></li>
+          </ul>
+        </div>
+
+        <!-- 13 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">13</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">OS Troubleshooting</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Windows diagnostics</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Linux performance</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Hardening / security</span></li>
+          </ul>
+        </div>
+
+        <!-- 14 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">14</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">ML Infrastructure</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Deployment pipelines</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Azure ML setup</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>MLOps rollout</span></li>
+          </ul>
+        </div>
+
+        <!-- 15 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">15</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Programming Expertise</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Python / PowerShell / Bash</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>JavaScript / TypeScript</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>C# / .NET Core</span></li>
+          </ul>
+        </div>
+
+        <!-- 16 -->
+        <div class="service-card reveal bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:-translate-y-2 transition border border-gray-100 dark:border-gray-700">
+          <div class="mb-6 flex items-center gap-4"><span class="number-badge">16</span><h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Zabbix Monitoring</h3></div>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>End-to-end setup</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Custom alerting</span></li>
+            <li class="flex gap-2"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>Dashboards & reporting</span></li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== Services Section ===== -->
-<section id="services" class="py-20 bg-white">
-  <div class="container mx-auto px-6">
-    <h2 class="section-heading text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800 inline-block">
-      <i class="fas fa-cogs text-blue-500 mr-3"></i> My Expertise
-    </h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- 1. CI/CD Pipelines -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-rocket text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">01</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">CI/CD Pipelines</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>GitHub Actions/Azure Pipelines</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>YAML pipeline configuration</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Containerized deployments</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 2. Infrastructure as Code -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-project-diagram text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">02</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Infrastructure as Code</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Terraform/Bicep/ARM templates</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Azure resource provisioning</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Policy-as-Code implementation</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 3. GitHub Repositories -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fab fa-github text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">03</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">GitHub Repositories</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>GitHub Repository management CLI</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Pull Requests</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Security Scanning</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 4. GitHub Migration -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-code-branch text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">04</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Repositories & Pipelines Migration</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Bamboo Pipelines Migration</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>SVN Migration</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Bitbucket Migration</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 5. GitHub Security -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-shield-alt text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">05</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">GitHub Security</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Advanced Secret Scanning</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Dependabot vulnerability alerts</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>CodeQL integration</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 6. Azure DevOps Migrations -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-exchange-alt text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">06</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Azure DevOps Migrations</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Legacy system modernization</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Repository/Work Item migration</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Pipeline conversion tools</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 7. Docker Solutions -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fab fa-docker text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">07</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Docker Solutions</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Containerization of legacy apps</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Dockerfile optimization</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Azure Container Registry setup</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 8. Kubernetes -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-ship text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">08</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Kubernetes</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>AKS (Azure Kubernetes) deployments</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Helm chart development</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Auto-scaling configurations</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 9. Azure Resources Transfer -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-cloud-upload-alt text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">09</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Azure Resources Transfer</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Cross-tenant migrations</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Subscription-to-subscription transfers</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>ARM template resource relocation</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 10. Team Training -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-users text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">10</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Team Training</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>GitHub Actions workshops</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Azure DevOps best practices</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>YAML pipeline deep dives</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 11. Performance Optimization -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-tachometer-alt text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">11</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Performance Optimization</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Pipeline speed analysis</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Cost-effective cloud scaling</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Caching strategies</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 12. Application Support and Maintenance -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-tools text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">12</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Application Support & Maintenance</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>24/7 application monitoring</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Service reliability engineering</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Automated incident response</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 13. OS Troubleshooting -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-terminal text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">13</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">OS Troubleshooting</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Windows Server diagnostics</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Linux RHEL performance tuning</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>System hardening & security</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 14. Machine Learning Infrastructure -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-brain text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">14</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Machine Learning Infrastructure</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>ML model deployment pipelines</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Azure ML workspace setup</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>MLOps implementation</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 15. Programming Languages -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-code text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">15</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Programming Expertise</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Python & PowerShell scripting</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>JavaScript/TypeScript development</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>C#/.NET Core applications</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Add this service card after the Programming Expertise card -->
-
-      <!-- 16. Zabbix Monitoring -->
-      <div class="service-card bg-gray-50 p-8 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2">
-        <div class="text-blue-600 mb-4 flex items-center">
-          <i class="fas fa-chart-line text-4xl mr-4"></i>
-          <span class="text-2xl font-bold">16</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-gray-800">Zabbix Monitoring</h3>
-        <ul class="text-gray-600 space-y-2">
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>End-to-end monitoring setup</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Custom alert configurations</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>Performance dashboards & reporting</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</section>  
-
-  <!-- ===== Testimonials ===== -->
-  <section class="py-20 bg-gray-100">
+  <!-- Testimonials -->
+  <section class="py-20 bg-gray-100 dark:bg-gray-900">
     <div class="container mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
+      <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800 dark:text-gray-100">
         <i class="fas fa-quote-left text-blue-500 mr-3"></i> Client Success Stories
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Testimonial 1 -->
-        <div class="bg-white p-8 rounded-xl shadow-lg">
+        <article class="reveal bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 shadow-gray-200/40 dark:shadow-black/40">
           <div class="flex items-center mb-4">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full object-cover mr-4">
             <div>
-              <h4 class="font-bold">John D.</h4>
-              <p class="text-blue-600">CTO, TechCorp</p>
+              <h3 class="font-semibold text-gray-800 dark:text-gray-100">John D.</h3>
+              <p class="text-blue-600 text-sm">CTO, TechCorp</p>
             </div>
           </div>
-          <p class="text-gray-600 italic">
-            "Migrated our entire pipeline to Azure DevOps in 2 weeks. Flawless execution!"
-          </p>
-        </div>
-
-        <!-- Testimonial 2 -->
-        <div class="bg-white p-8 rounded-xl shadow-lg">
+          <p class="text-gray-600 dark:text-gray-300 italic">"Migrated our pipeline suite to Azure DevOps in record time—zero downtime."</p>
+        </article>
+        <article class="reveal bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 shadow-gray-200/40 dark:shadow-black/40">
           <div class="flex items-center mb-4">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-12 h-12 rounded-full object-cover mr-4">
             <div>
-              <h4 class="font-bold">Sarah K.</h4>
-              <p class="text-blue-600">DevOps Lead, FinTech</p>
+              <h3 class="font-semibold text-gray-800 dark:text-gray-100">Sarah K.</h3>
+              <p class="text-blue-600 text-sm">DevOps Lead, FinTech</p>
             </div>
           </div>
-          <p class="text-gray-600 italic">
-            "Implemented GitHub Advanced Security—reduced vulnerabilities by 90%."
-          </p>
-        </div>
+            <p class="text-gray-600 dark:text-gray-300 italic">"Advanced security rollout reduced exposure by over 90%—highly recommended."</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== Contact Form ===== -->
-  <section id="contact" class="py-20 bg-gray-900 text-white">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">
-        <i class="fas fa-paper-plane text-blue-400 mr-3"></i> Let's Work Together
-      </h2>
-      <p class="text-center mb-12 max-w-2xl mx-auto text-gray-300">
-        Need a DevOps expert? Reach out for a free 30-minute consultation.
-      </p>
-      <form id="contactForm" class="max-w-2xl mx-auto" onsubmit="return handleSubmit(event)">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <input 
-            type="text" 
-            name="name" 
-            id="name"
-            placeholder="Your Name" 
-            required
-            class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <input 
-            type="email" 
-            name="email" 
-            id="email"
-            placeholder="Your Email" 
-            required
-            class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-gray-900 dark:bg-black text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_40%,rgba(59,130,246,.25),transparent_60%)]"></div>
+    <div class="container mx-auto px-6 relative">
+      <h2 class="reveal text-3xl md:text-4xl font-bold text-center mb-6">Let's Work Together</h2>
+      <p class="reveal text-center mb-12 max-w-2xl mx-auto text-gray-300">Need a DevOps expert? Reach out for a free 30-minute consultation.</p>
+      <form id="contactForm" class="reveal max-w-2xl mx-auto space-y-6" onsubmit="return handleSubmit(event)">
+        <input type="hidden" name="to_email" value="taoufik.m.mohamed@gmail.com">
+        <input type="hidden" name="to_name" value="Mohamed Taoufik">
+        <input type="hidden" name="subject" value="New message from website">
+        <input type="email" name="from_email" id="from_email" class="hidden" tabindex="-1" aria-hidden="true">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="space-y-1">
+            <label for="name" class="text-sm font-medium text-gray-300">Name</label>
+            <input type="text" name="from_name" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-800/80 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          </div>
+          <div class="space-y-1">
+            <label for="email" class="text-sm font-medium text-gray-300">Email</label>
+            <input type="email" name="reply_to" id="email" required class="w-full px-4 py-3 rounded-lg bg-gray-800/80 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          </div>
         </div>
-        <textarea 
-          name="message" 
-          id="message"
-          placeholder="How can I help?" 
-          rows="4" 
-          required
-          class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-6"></textarea>
-        
-        <div id="formAlert" class="mb-4 hidden"></div>
-        
-        <button 
-          type="submit" 
-          id="submitButton"
-          class="w-full bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold transition-all duration-300">
-          <i class="fas fa-paper-plane mr-2"></i> Send Message
+        <div class="space-y-1">
+          <label for="message" class="text-sm font-medium text-gray-300">Message</label>
+          <textarea name="message" id="message" rows="5" required class="w-full px-4 py-3 rounded-lg bg-gray-800/80 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="How can I help?"></textarea>
+        </div>
+        <div id="formAlert" class="hidden"></div>
+        <button id="submitButton" type="submit" class="w-full justify-center inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold transition disabled:opacity-60 focus-ring">
+          <i class="fas fa-paper-plane"></i><span>Send Message</span>
         </button>
       </form>
     </div>
   </section>
 
-  <!-- Add EmailJS SDK before your closing </body> tag -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-<script>
-  // Initialize EmailJS with your user ID (sign up at emailjs.com)
-  (function() {
-    emailjs.init("YOUR_USER_ID"); // Replace with your actual EmailJS user ID
-  })();
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    
-    // Get form elements
-    const form = document.getElementById('contactForm');
-    const submitButton = document.getElementById('submitButton');
-    const formAlert = document.getElementById('formAlert');
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    
-    // Validate form
-    if (!name || !email || !message) {
-      showAlert('Please fill in all fields', 'error');
-      return false;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      showAlert('Please enter a valid email address', 'error');
-      return false;
-    }
-    
-    // Change button state to loading
-    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-    submitButton.disabled = true;
-    
-    // Prepare EmailJS parameters
-    const templateParams = {
-      from_name: name,
-      from_email: email,
-      message: message
-    };
-    
-    // Send email using EmailJS
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-      .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-        showAlert('Message sent successfully! I\'ll be in touch soon.', 'success');
-        form.reset();
-      }, function(error) {
-        console.log('FAILED...', error);
-        showAlert('Failed to send message. Please try again.', 'error');
-      })
-      .finally(() => {
-        submitButton.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Send Message';
-        submitButton.disabled = false;
-      });
-    
-    return false;
-  }
-  
-  function showAlert(message, type) {
-    const formAlert = document.getElementById('formAlert');
-    formAlert.innerHTML = message;
-    formAlert.className = `mb-4 p-4 rounded-lg ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white`;
-    formAlert.classList.remove('hidden');
-  }
-</script>
-
-  <!-- ===== Footer ===== -->
-  <footer class="py-10 bg-gray-800 text-gray-400">
-    <div class="container mx-auto px-6 text-center">
-      <div class="flex justify-center space-x-6 mb-6">
-        <!--a href="#" class="hover:text-white"><i class="fab fa-github text-2xl"></i></a>
-        <a href="#" class="hover:text-white"><i class="fab fa-linkedin text-2xl"></i></a>
-        <a href="#" class="hover:text-white"><i class="fab fa-twitter text-2xl"></i></a>
-        <div class="flex justify-center space-x-6 mb-6"-->
-
-          <!-- LinkedIn Link -->
-          <a href="https://www.linkedin.com/in/mohamed-t-b4153639/" 
-             title="Visit My linkedin"
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="hover:text-white transition-colors duration-300">
-            <i class="fab fa-linkedin text-2xl"></i>
-          </a>
-
-
-
-          <!-- GitHub Link -->
-          <a href="https://github.com/taoufikmohamed" 
-             title="Visit My GitHub"
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="hover:text-white transition-colors duration-300">
-            <i class="fab fa-github text-2xl"></i>
-          </a>
-          
-          <!-- Twitter Link -->
-          <a href="https://x.com/_MohamedTaoufik" 
-             title="Visit My Twitter"
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="hover:text-white transition-colors duration-300">
-             <i class="fab fa-twitter text-2xl"></i></a>
-          </a>
-        </div>
+  <!-- Footer -->
+  <footer class="py-10 bg-gray-800 dark:bg-gray-950 text-gray-400">
+    <div class="container mx-auto px-6 text-center space-y-6">
+      <div class="flex justify-center space-x-6">
+        <a href="https://www.linkedin.com/in/mohamed-t-b4153639/" aria-label="LinkedIn" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fab fa-linkedin text-2xl"></i></a>
+        <a href="https://github.com/taoufikmohamed" aria-label="GitHub" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fab fa-github text-2xl"></i></a>
+        <a href="https://x.com/_MohamedTaoufik" aria-label="Twitter/X" target="_blank" rel="noopener" class="hover:text-white transition"><i class="fab fa-twitter text-2xl"></i></a>
       </div>
-      <p>&copy; 2025 Your DevOps Consultancy. All rights reserved.</p>
+      <p class="text-xs">&copy; 2025 Your DevOps Consultancy. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    const EMAILJS_PUBLIC_KEY='34e_iQcOpal7XZQLU';
+    const EMAILJS_SERVICE_ID='service_k7m5ipe';
+    const EMAILJS_TEMPLATE_ID='template_45ws3e2';
+    document.addEventListener('DOMContentLoaded',()=>{ emailjs.init({publicKey:EMAILJS_PUBLIC_KEY}); });
+    function handleSubmit(e){
+      e.preventDefault();
+      const f=e.target; const btn=document.getElementById('submitButton');
+      const name=f.querySelector('#name').value.trim();
+      const email=f.querySelector('#email').value.trim();
+      const msg=f.querySelector('#message').value.trim();
+      if(!name||!email||!msg) return alertBox('Please fill all fields','error'),false;
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return alertBox('Invalid email','error'),false;
+      const fe=document.getElementById('from_email'); if(fe) fe.value=email;
+      btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Sending...';
+      emailjs.sendForm(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,f)
+        .then(()=>{ alertBox('Message sent successfully!','success'); f.reset(); })
+        .catch(err=>{ console.error(err); alertBox(err?.text||'Send failed. Check configuration.','error'); })
+        .finally(()=>{ btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> Send Message'; });
+      return false;
+    }
+    function alertBox(msg,type){
+      const el=document.getElementById('formAlert');
+      el.className='p-4 rounded-lg text-sm font-medium '+(type==='success'?'bg-green-600 text-white':'bg-red-600 text-white');
+      el.textContent=msg;
+    }
+  </script>
+
+  <!-- Theme Toggle -->
+  <script>
+    (function(){
+      const root=document.documentElement,btn=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),label=document.getElementById('themeLabel');
+      function sync(){const d=root.classList.contains('dark');btn.setAttribute('aria-pressed',d?'true':'false');if(d){icon.className='fas fa-sun text-amber-300';label.textContent='Light';}else{icon.className='fas fa-moon text-yellow-500';label.textContent='Dark';}}
+      btn.addEventListener('click',()=>{root.classList.toggle('dark');localStorage.theme=root.classList.contains('dark')?'dark':'light';sync();});
+      sync();
+      const mq=window.matchMedia('(prefers-color-scheme: dark)');
+      mq.addEventListener('change',e=>{ if(!('theme'in localStorage)){ e.matches?root.classList.add('dark'):root.classList.remove('dark'); sync(); }});
+    })();
+  </script>
+
+  <!-- Scroll Reveal -->
+  <script>
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}})},{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+
+  <!-- Rotating keyword (hero) -->
+  <script>
+  (function(){
+    const el = document.getElementById('heroRotator');
+    if(!el) return;
+    const words = ["Pipelines","Infrastructure","Security","Reliability","Observability","Automation","Velocity"];
+    let i = 0;
+    function swap(){
+      i = (i+1) % words.length;
+      el.classList.add('opacity-0','translate-y-1');
+      setTimeout(()=>{
+        el.textContent = words[i];
+        el.classList.remove('translate-y-1');
+        el.classList.add('translate-y-0');
+        el.classList.remove('opacity-0');
+      },260);
+    }
+    el.classList.add('transition','duration-300','ease-out','inline-block');
+    setInterval(swap,3000);
+    swap();
+  })();
+  </script>
 </body>
 </html>
